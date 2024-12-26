@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Message.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Message.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from "react";
+
+/**
+ * Message component that displays a message, allows editing, liking, and deleting.
+ * It also handles the communication with the backend to perform those actions.
+ *
+ * @component
+ * @param {Object} props - The props object.
+ * @param {string} props.messageId - The unique ID of the message.
+ * @param {string} props.image - The URL of the message image.
+ * @param {string} props.title - The title of the message.
+ * @param {string} props.contents - The contents of the message.
+ * @param {boolean} props.is_liked - Whether the message is liked by the user.
+ * @param {Function} props.refresh - Function to refresh the message list.
+ */
+export default function Message({ messageId, image, title, contents, is_liked, refresh }) {
+  
+  const url = import.meta.env.VITE_DOKKU_API_URL;
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [formData, setFormData] = useState({
+    title: title,
+    contents: contents,
+  });
+
+  const [liked, setLiked] = useState(is_liked);
+
+  /**
+   * Handles input change when in edit mode.
+   * Updates the form data state.
+   * @param {Object} event - The event object representing the change.
+   */
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  /**
+   * Toggles the edit mode on.
+   */
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  /**
+   * Cancels the edit operation, reverts to original data, and exits edit mode.
+   */
+  const handleCancelClick = () => {
+    setFormData({
+      title: title,
+      contents: contents,
+    });
+    setIsEditing(false);
+  };
+
+  /**
+   * Applies the changes by sending a PUT request to the backend.
+   * @async
+   * @returns {Promise&lt;void>}
+   */
+  const handleApplyClick = async () => {
+    try {
+      const response = await fetch(`${url}/posts/${messageId}`, {
+        method: "PUT",
+        headers: {
+          "contents-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update message");
+      }
+      refresh();
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating message:", error);
+    }
+  };
+
+  /**
+   * Handles like/unlike functionality by toggling the like state and sending requests to the backend.
+   * @async
+   * @returns {Promise&lt;void>}
+   */
+  const handleLikeClick = async () => {
+    try {
+      if (liked) {
+        const response = await fetch(`${url}/posts/${messageId}/like`, {
+          method: "DELETE",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to unlike the post");
+        }
+      } else {
+        const response = await fetch(`${url}/posts/${messageId}/like`, {
+          method: "POST",
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to like the post");
+        }
+      }
+      refresh();
+      setLiked((prevLiked) => !prevLiked);
+    } catch (error) {
+      console.error("Error toggling like:", error);
+      setLiked((prevLiked) => !prevLiked);
+    }
+  };
+
+  /**
+   * Handles message deletion by sending a DELETE request to the backend.
+   * @async
+   * @returns {Promise&lt;void>}
+   */
+  const handleDeleteClick = async () => {
+    try {
+      const response = await fetch(`${url}/posts/${messageId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete message");
+      }
+      alert("Message deleted successfully");
+      refresh();
+    } catch (error) {
+      console.error("Error deleting message:", error);
+    }
+  };
+
+  return (
+    &lt;div className="message">
+      &lt;div
+        className="message-image"
+        style={{ backgroundImage: `url(${image})` }}
+      >&lt;/div>
+      &lt;div className="message-text-container">
+        {isEditing ? (
+          &lt;>
+            &lt;input
+              className="edit-input title-input"
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+            &lt;textarea
+              className="edit-input contents-input"
+              name="contents"
+              value={formData.contents}
+              onChange={handleChange}
+            />
+          &lt;/>
+        ) : (
+          &lt;>
+            &lt;h2 className="message-title">{title}&lt;/h2>
+            &lt;p className="message-contents">{contents}&lt;/p>
+          &lt;/>
+        )}
+      &lt;/div>
+
+      &lt;button className={`message-like-btn ${liked &amp;&amp; `liked`}`} onClick={handleLikeClick}>
+        {liked ? "♥" : "♡"}
+      &lt;/button>
+
+      &lt;div className="message-buttons">
+        {isEditing ? (
+          &lt;>
+            &lt;button className="apply-btn message-button" onClick={handleApplyClick}>
+              Apply
+            &lt;/button>
+            &lt;button className="cancel-btn message-button" onClick={handleCancelClick}>
+              Cancel
+            &lt;/button>
+          &lt;/>
+        ) : (
+          &lt;>
+            &lt;button className="edit-btn message-button" onClick={handleEditClick}>
+              Edit
+            &lt;/button>
+            &lt;button className="delete-btn message-button" onClick={handleDeleteClick}>
+              Delete
+            &lt;/button>
+          &lt;/>
+        )}
+      &lt;/div>
+    &lt;/div>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue Oct 22 2024 20:23:04 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
