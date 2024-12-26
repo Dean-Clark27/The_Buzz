@@ -1,0 +1,116 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>buzz-mobile-app - v1.0.0</title><meta name="description" content="Documentation for buzz-mobile-app"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">buzz-mobile-app - v1.0.0</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>buzz-mobile-app - v1.0.0</h1></div><div class="tsd-panel tsd-typography"><blockquote>
+<p><strong>I highly encourage viewing this with a markdown previewer (e.g. through VSCode or Bitbucket or the generated docs)</strong></p>
+</blockquote>
+<a id="md:installing-and-running" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Installing and Running:<a href="#md:installing-and-running" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>Make sure <a href="https://nodejs.org/en/" target="_blank" class="external">Node.js (LTS)</a> is installed
+<ul>
+<li>Try the following to very (you may need to add Node.js to your <strong>path</strong>):
+<ul>
+<li><code>node -v</code></li>
+<li><code>npm -v</code></li>
+<li><code>npx -v</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Running <code>npx expo start</code> from inside &quot;mobile-app&quot; will start the app</li>
+<li><strong>To Run: You can either...</strong>
+<ol>
+<li>Download the <em><strong>Expo Go</strong></em> app on your phone and scan the <em><strong>QR code</strong></em> <u>(since they want Android, final visual testing should <em>probably</em> be through an Android or emulated Android)</u></li>
+<li>Start your simulator from &quot;Android Studio&quot; or &quot;<a href="https://expo.dev/orbit" target="_blank" class="external">Orbit</a>&quot; (would reccommend) and hit <code>a</code> in your terminal to launch</li>
+</ol>
+</li>
+</ul>
+<a id="md:potential-issues" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Potential Issues:<a href="#md:potential-issues" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><em>I found these issues by trying to run this project inside a virtual machine. There are possibly other issues you may encounter.</em></p>
+<ul>
+<li>
+<p><img src="media/Error1.png" alt="Error1"></p>
+<ul>
+<li>Try: <code>npm install -g npm@latest</code></li>
+</ul>
+</li>
+<li>
+<p><img src="media/Error2.png" alt="Error2"></p>
+<ul>
+<li>Try: <code>npm install expo</code></li>
+</ul>
+</li>
+</ul>
+<a id="md:project-structure-and-details" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Project Structure (and details):<a href="#md:project-structure-and-details" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><pre><code class="text">src/
+├─ app/
+│  ├─ _layout.tsx          - App entry point, displays index
+│  ├─ MessagePage.tsx      - Main page
+│  ├─ apiUtils.tsx         - Contains functions that talk to backend
+│  ├─ constants.tsx        - For shared values (like the backend url)
+│  ├─ styles.tsx           - Contains the styles (might want to refactor)
+│  └─ __tests__/           - Houses unit tests
+│     ├─ MessagePage.test.tsx
+│     └─ apiUtils.test.tsx
+├─ assets/                 - Fonts and Images
+└─ components/
+   ├─ ListItem.tsx         - Component for displaying each post
+   ├─ AddPostModal.tsx     - Component for the &quot;Add Post&quot; UI
+   └─ __tests__/           - Houses tests
+      ├─ ListItem.test.tsx
+      └─ AddPostModal.test.tsx
+</code><button type="button">Copy</button></pre>
+
+<a id="md:development-aid" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Development Aid:<a href="#md:development-aid" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><strong>Expo - Guides</strong>
+<ul>
+<li><a href="https://docs.expo.dev/guides/overview/" target="_blank" class="external">https://docs.expo.dev/guides/overview/</a></li>
+</ul>
+</li>
+<li><strong>Expo - Reference</strong>
+<ul>
+<li><a href="https://docs.expo.dev/versions/latest/" target="_blank" class="external">https://docs.expo.dev/versions/latest/</a></li>
+</ul>
+</li>
+<li><strong>React Native - Components Documentation</strong>
+<ul>
+<li><a href="https://reactnative.dev/docs/components-and-apis" target="_blank" class="external">https://reactnative.dev/docs/components-and-apis</a></li>
+</ul>
+</li>
+<li><strong>React Native Paper - Guides</strong>
+<ul>
+<li><a href="https://callstack.github.io/react-native-paper/docs/guides/getting-started" target="_blank" class="external">https://callstack.github.io/react-native-paper/docs/guides/getting-started</a></li>
+</ul>
+</li>
+<li><strong>React Native Paper - Components Documentation</strong>
+<ul>
+<li><a href="https://callstack.github.io/react-native-paper/docs/components/ActivityIndicator" target="_blank" class="external">https://callstack.github.io/react-native-paper/docs/components/ActivityIndicator</a></li>
+</ul>
+</li>
+<li><strong>Expo - React/React Native/React Native Paper Live Examples</strong>
+<ul>
+<li><a href="https://snack.expo.dev/@react-native-paper/react-native-paper-example_v5" target="_blank" class="external">https://snack.expo.dev/@react-native-paper/react-native-paper-example_v5</a></li>
+</ul>
+</li>
+</ul>
+<a id="md:tests" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Tests:<a href="#md:tests" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><strong>Recommended VSCode Extension</strong>: &quot;Jest&quot; by Orta
+<ul>
+<li>Good debugging tool</li>
+<li>More info: <a href="https://www.youtube.com/watch?v=PlppJvJ67GA&amp;ab_channel=MissCoding" target="_blank" class="external">https://www.youtube.com/watch?v=PlppJvJ67GA&amp;ab_channel=MissCoding</a></li>
+</ul>
+</li>
+<li>... or just run tests with <code>npm test</code></li>
+</ul>
+<a id="md:other" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Other:<a href="#md:other" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>This project uses <strong>.tsx (TypeScript with JSX)</strong> files, so I would reccommend familiarizing yourself with <strong>TypeScript</strong> (at leaste a little)</li>
+<li>This project uses <strong>React</strong> and <strong>React Native</strong> as the main skeleton, so I would reccommend familiarizing yourself with those as well</li>
+<li>The backend URL is currently configured to hit a fake api</li>
+<li>For integration testing, this will have to be changed to the dokku URL</li>
+</ul>
+<a id="md:documentation" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Documentation:<a href="#md:documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>Since we are using <strong>Expo Go</strong> instead of <strong>Flutter</strong>, we can't use dartdoc for documentation purposes. It has been decided (given that we are using .tsx) that we will use <strong>TypeDoc</strong> for documentation purposes.</li>
+<li>&quot;tsconfig.json&quot; contains the configuration for TypeDoc (including the entry point and output directory) in the &quot;typedocOptions&quot; field.</li>
+<li>To generate documentation, run <code>npx typedoc</code></li>
+<li>The generated documentation will be in the &quot;docs&quot; folder</li>
+</ul>
+<a id="md:main-commands" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Main Commands:<a href="#md:main-commands" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><code>npx expo start</code> - Start the app</li>
+<li><code>npm test</code> - Run tests (I would reccommend using the &quot;Jest&quot; extension in VSCode)</li>
+<li><code>npx typedoc</code> - Generate documentation</li>
+</ul>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:installing-and-running"><span>Installing and <wbr/>Running:</span></a><a href="#md:potential-issues"><span>Potential <wbr/>Issues:</span></a><a href="#md:project-structure-and-details"><span>Project <wbr/>Structure (and details):</span></a><a href="#md:development-aid"><span>Development <wbr/>Aid:</span></a><a href="#md:tests"><span>Tests:</span></a><a href="#md:other"><span>Other:</span></a><a href="#md:documentation"><span>Documentation:</span></a><a href="#md:main-commands"><span>Main <wbr/>Commands:</span></a></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>buzz-mobile-app - v1.0.0</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
