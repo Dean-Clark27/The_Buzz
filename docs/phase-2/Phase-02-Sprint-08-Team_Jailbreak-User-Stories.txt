@@ -1,0 +1,113 @@
+﻿—----------------------------------------------------------------------------------------------------------------------------
+Admin User:
+
+
+Create/Drop A Table
+
+
+As a Administrator
+I want to Create or drop/delete a table from our database using the command line 
+So I can Store more ideas from users or remove entire sets that may be seen as inappropriate or unnecessary
+
+
+Administrator story-based tests
+Manual
+—----------------------------------------------------------------------------------------------------------------------------
+Admin User:
+
+
+Invalidate a Post
+
+
+As a Administrator
+I want to Invalidate a post from the list
+So I can filter any posts from being seen by users
+
+
+Administrator story-based tests
+Manual 
+—----------------------------------------------------------------------------------------------------------------------------
+Admin User:
+
+
+Invalidate a User
+
+
+As a Administrator
+I want to Invalidate a User from the service
+So I can manage the Users that have access to the service
+
+
+Administrator story-based tests
+Manual 
+—----------------------------------------------------------------------------------------------------------------------------
+Anonymous User:
+
+
+Register with Google Account
+
+
+As a User 
+I want to authenticate using my Google account
+So I can login to the service
+
+
+User story-based tests
+Manual
+—----------------------------------------------------------------------------------------------------------------------------
+Authenticated User:
+
+
+Add/Remove Like
+
+
+As a User 
+I want to Like or remove a like from an idea
+So I can indicate whether I agree with an idea or not, and gauge popularity of posted ideas
+
+
+User story-based tests
+Manual
+—----------------------------------------------------------------------------------------------------------------------------
+Authenticated User:
+
+
+Add/Remove Dislike
+
+
+As a User 
+I want to add or remove a dislike from an idea
+So I can indicate whether I agree with an idea or not, and gauge popularity of posted ideas
+
+
+User story-based tests
+Manual
+—----------------------------------------------------------------------------------------------------------------------------
+Authenticated User:
+
+
+Add a comment
+
+
+As a User 
+I want to add a comment to a post
+So I can share my ideas about a post
+
+
+User story-based tests
+Manual
+—----------------------------------------------------------------------------------------------------------------------------
+Authenticated User:
+
+
+Edit a comment
+
+
+As a User 
+I want to edit a previous comment
+So I can revise my ideas on an old comment I made
+
+
+User story-based tests
+Manual
+—----------------------------------------------------------------------------------------------------------------------------
