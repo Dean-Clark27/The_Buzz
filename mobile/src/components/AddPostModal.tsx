@@ -1,24 +1,17 @@
-// Import local dependencies
-import styles from "../app/styles";
-// Import dependencies
-import React from "react";
-import { View, Text, TextInput, Modal, Button } from "react-native";
+import React from 'react';
+import { Modal, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-/**
- * - A modal component for adding a new post.
- *
- * @param {Object} props - The properties of the component.
- * @param {boolean} props.modalVisible - Determines if the modal is visible.
- * @param {Function} props.setModalVisible - Function to set the visibility of the modal.
- * @param {string} props.newTitle - The title of the new post.
- * @param {Function} props.setNewTitle - Function to set the title of the new post.
- * @param {string} props.newContents - The contents of the new post.
- * @param {Function} props.setNewContents - Function to set the contents of the new post.
- * @param {Function} props.addPostFunction - Function to add the new post.
- *
- * @returns {JSX.Element} - The AddPostModal component.
- */
-export default function AddPostModal({
+interface AddPostModalProps {
+  modalVisible: boolean;
+  setModalVisible: (visible: boolean) => void;
+  newTitle: string;
+  setNewTitle: (title: string) => void;
+  newContents: string;
+  setNewContents: (contents: string) => void;
+  addPostFunction: () => void;
+}
+
+const AddPostModal: React.FC<AddPostModalProps> = ({
   modalVisible,
   setModalVisible,
   newTitle,
@@ -26,35 +19,7 @@ export default function AddPostModal({
   newContents,
   setNewContents,
   addPostFunction,
-}: {
-  modalVisible: boolean;
-  setModalVisible: (visible: boolean) => void;
-  newTitle: string;
-  setNewTitle: (text: string) => void;
-  newContents: string;
-  setNewContents: (text: string) => void;
-  addPostFunction: () => void;
-}) {
-  // Function to clear the input fields
-  const clearInputFields = () => {
-    setNewTitle("");
-    setNewContents("");
-  };
-
-  // ModalHeader component
-  const ModalHeader = () => (
-    <View style={styles.modalHeader}>
-      <Button title="Cancel" onPress={() => setModalVisible(false)} />
-      <Text style={styles.newPostTitle}>New Post</Text>
-      <Button
-      title="Submit"
-      onPress={() => { setModalVisible(false); addPostFunction(); clearInputFields(); }}
-      disabled={!newTitle.trim() || !newContents.trim()}
-      />
-    </View>
-  );
-
-  // Return the AddPostModal component
+}) => {
   return (
     <Modal
       visible={modalVisible}
@@ -62,32 +27,56 @@ export default function AddPostModal({
       transparent={true}
       onRequestClose={() => setModalVisible(false)}
     >
-      <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          {/* Modal header bar: Cancle, New Post, Post */}
-          <ModalHeader />
-          {/* Title Input */}
+      <View style={styles.modalBackground}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>New Post</Text>
+
           <TextInput
+            placeholder="Title"
             value={newTitle}
             onChangeText={setNewTitle}
-            style={styles.modalInput}
-            placeholder="Title"
-            placeholderTextColor="gray"
-            autoFocus={true}
-            maxLength={100}
+            style={styles.input}
           />
-          {/* Contents Input */}
           <TextInput
+            placeholder="Contents"
             value={newContents}
             onChangeText={setNewContents}
-            style={[styles.modalInput, styles.modalContentsInput]}
-            placeholder="Contents"
-            placeholderTextColor="gray"
-            multiline={true}
-            maxLength={300}
+            style={styles.input}
+            multiline
           />
+
+          <Button title="Submit" onPress={addPostFunction} />
+          <Button title="Cancel" onPress={() => setModalVisible(false)} />
         </View>
       </View>
     </Modal>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    width: 300,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  input: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 20,
+    padding: 10,
+  },
+});
+
+export default AddPostModal;

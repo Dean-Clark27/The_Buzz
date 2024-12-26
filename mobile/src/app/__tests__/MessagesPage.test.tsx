@@ -1,22 +1,22 @@
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
-import { fetchData, toggleLike, addPost } from "../apiUtils";
+import { fetchData, toggleVote, addPost } from "../apiUtils";
 import MessagesPage from "../MessagesPage";
 
-// Mock the fetchData, toggleLike, and addPost functions
+// Mock the fetchData, toggleVote, and addPost functions
 jest.mock("../apiUtils", () => ({
   fetchData: jest.fn(),
-  toggleLike: jest.fn(),
+  toggleVote: jest.fn(),
   addPost: jest.fn(),
 }));
 
 // Mock the data returned by fetchData
 const mockData = [
-  { id: 1, title: "Title 1", contents: "Contents 1", is_liked: false },
-  { id: 2, title: "Title 2", contents: "Contents 2", is_liked: true },
+  { id: 1, title: "Title 1", contents: "Contents 1", upvotes: 5, downvotes: 2 },
+  { id: 2, title: "Title 2", contents: "Contents 2", upvotes: 3, downvotes: 1 },
 ];
 
-// Tests for the MessagePage component
-describe("MessagePage", () => {
+// Tests for the MessagesPage component
+describe("MessagesPage", () => {
   beforeEach(() => {
     (fetchData as jest.Mock).mockImplementation((setData) => setData(mockData));
   });
@@ -52,5 +52,33 @@ describe("MessagePage", () => {
     fireEvent.changeText(getByPlaceholderText("Contents"), "New Contents");
     fireEvent.press(getByText("Submit"));
     expect(addPost).toHaveBeenCalledWith("New Title", "New Contents", mockData, expect.any(Function));
+  });
+
+  it("calls toggleVote with 'upvote' when the upvote button is pressed", async () => {
+    const { getByText } = render(<MessagesPage />);
+    await waitFor(() => {
+      fireEvent.press(getByText("Upvote"));
+    });
+    expect(toggleVote).toHaveBeenCalledWith(
+      mockData[0],
+      0,
+      mockData,
+      expect.any(Function),
+      "upvote"
+    );
+  });
+
+  it("calls toggleVote with 'downvote' when the downvote button is pressed", async () => {
+    const { getByText } = render(<MessagesPage />);
+    await waitFor(() => {
+      fireEvent.press(getByText("Downvote"));
+    });
+    expect(toggleVote).toHaveBeenCalledWith(
+      mockData[0],
+      0,
+      mockData,
+      expect.any(Function),
+      "downvote"
+    );
   });
 });

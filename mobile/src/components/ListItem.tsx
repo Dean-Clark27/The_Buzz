@@ -14,9 +14,14 @@ import { Card, IconButton } from "react-native-paper";
  * 
  * @returns {JSX.Element} - The ListItem component.
  */
-export default function ListItem({ item, toggleLikeFunction }: {
+export default function ListItem({
+  item,
+  toggleLikeFunction,
+  toggleDislikeFunction,
+}: {
   item: dataRow;
   toggleLikeFunction: () => void;
+  toggleDislikeFunction: () => void;
 }) {
   // Avatar component
   const Avatar = ({ source }: { source: any }) => (
@@ -34,12 +39,24 @@ export default function ListItem({ item, toggleLikeFunction }: {
   // LikeButton component
   const LikeButton = ({ isLiked }: { isLiked: boolean }) => (
     <IconButton
-      icon={isLiked ? "heart" : "heart-outline"}
+      icon={isLiked ? "heart" : "thumbs-up-outline"}
       iconColor={isLiked ? "#ff5050" : "gray"}
       size={25}
       style={styles.likeButton}
       onPress={toggleLikeFunction}
       testID="LikeButton"
+    />
+  );
+
+  // DislikeButton component
+  const DislikeButton = ({ isDisliked }: { isDisliked: boolean }) => (
+    <IconButton
+      icon={isDisliked ? "thumb-down" : "thumb-down-outline"}
+      iconColor={isDisliked ? "#5050ff" : "gray"}
+      size={25}
+      style={styles.dislikeButton}
+      onPress={toggleDislikeFunction}
+      testID="DislikeButton"
     />
   );
 
@@ -49,10 +66,13 @@ export default function ListItem({ item, toggleLikeFunction }: {
       <View style={styles.cardItem}>
         {/* Add an avatar */}
         <Avatar source={require("../assets/images/profile2.png")} />
-        {/* Add a text container */}
+        {/* Add the text container */}
         <ListItemText title={item.title} contents={item.contents} />
-        {/* Add a like button */}
-        <LikeButton isLiked={item.is_liked} />
+        {/* Add like and dislike buttons */}
+        <View>
+          <LikeButton isLiked={item.is_liked} />
+          <DislikeButton isDisliked={item.is_disliked} />
+        </View>
       </View>
     </Card>
   );

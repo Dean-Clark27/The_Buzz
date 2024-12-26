@@ -1,162 +1,151 @@
-import { StyleSheet } from 'react-native';
-
-// Banner
-const BANNER_HEIGHT = 230;
-// Header
-const HEADER_HEIGHT = 80;
-const GRADIENT_HEIGHT = BANNER_HEIGHT*3/4;
-// Padding
-const LIST_ELEMENT_PADDING = 4;
-const GENERAL_PADDING = 12;
-// Avatar
-const AVATAR_SIZE = 55;
-const AVATAR_RADIUS = 10;
-// Modal
-const MODAL_BORDER_RADIUS = 10;
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  // Container
   container: {
-    // Use flex: 1 to make sure the container takes up the whole screen
     flex: 1,
-    // This basically controls the entire background color of the screen
-    backgroundColor: "#dadada",
+    backgroundColor: "#fff",
   },
 
-  // ~~~~~ Banner & Header ~~~~~
-  // Banner
+  profileButtonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 10,
+    marginVertical: 10,
+    marginHorizontal: 20,
+  },
+
   banner: {
     width: "100%",
-    height: BANNER_HEIGHT,
+    height: 200,
+    resizeMode: "cover",
   },
-  // Header
+
   header: {
-    paddingHorizontal: GENERAL_PADDING,
-    // Set the height to fit the contained elements
-    height: HEADER_HEIGHT,
-    // Layer onto the bottom of the banner
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 20,
+  },
+
+  headerGradient: {
     position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    // Align items in a row
+    top: 0,
+    width: "100%",
+    height: "100%",
+  },
+
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#fff",
+    zIndex: 1,
+  },
+
+  addButton: {
+    position: "absolute",
+    right: 20,
+    bottom: -25,
+    backgroundColor: "#007AFF",
+  },
+
+  list: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+  },
+
+  listItem: {
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    padding: 15,
+    marginVertical: 10,
+    boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
+    elevation: 2,
+  },
+
+  itemTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+
+  voteContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 10,
+  },
+
+  voteItem: {
+    flexDirection: "row",
     alignItems: "center",
   },
 
-  // ~~~~~ Header Elements ~~~~~
-  headerGradient: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    // set the height to the same height as the header
-    height: GRADIENT_HEIGHT,
-  },
-  headerTitle: {
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "white",
-  },
-  addButton: {
-    // purple
-    backgroundColor: "#f8a8f8",
-    // yellow
-    //backgroundColor: "#efc11a",
+  voteCount: {
+    marginLeft: 5,
+    fontSize: 16,
   },
 
-  // ~~~~~ List ~~~~~
-  list: {
-    margin: LIST_ELEMENT_PADDING,
+  modalBackground: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  // Card element
+
+  errorContainer: {
+    backgroundColor: '#fee2e2',
+    padding: 16,
+    margin: 16,
+    borderRadius: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  errorText: {
+    color: "red",
+    textAlign: "center",
+    marginVertical: 10,
+  },
+
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  listItemTextContainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  postTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  postContents: {
+    fontSize: 14,
+    color: "gray",
+  },
+  likeButton: {
+    alignSelf: "center",
+  },
+  dislikeButton: {
+    alignSelf: "center",
+  },
   card: {
-    margin: LIST_ELEMENT_PADDING,
+    marginVertical: 10,
+    borderRadius: 8,
+    boxShadow: '0px 2px 4px rgba(0,0,0,0.1)',
+    elevation: 2,
+    backgroundColor: "#fff",
   },
   cardItem: {
     flexDirection: "row",
     alignItems: "center",
-    padding: GENERAL_PADDING,
-  },
-
-  // ~~~~~ Message Elements ~~~~~
-  avatar: {
-    width: AVATAR_SIZE,
-    height: AVATAR_SIZE,
-    borderRadius: AVATAR_RADIUS,
-    marginRight: GENERAL_PADDING,
-    // align to the top of the card
-    alignSelf: "flex-start",
-  },
-  listItemTextContainer: {
-    flex: 1,
-  },
-  postTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  postContents: {
-    fontSize: 14,
-  },
-  likeButton: {
-    // align to the top of the card
-    //alignSelf: "flex-start",
-  },
-
-  // ~~~~~ Modal Elements ~~~~~
-  // Overall container for the modal
-  modalContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  // Content of the modal
-  modalContent: {
-    width: "100%",
-    height: "90%",
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: MODAL_BORDER_RADIUS,
-  },
-  // Header: Cancel, New Post, Post
-  modalHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    padding: GENERAL_PADDING,
-    borderTopLeftRadius: MODAL_BORDER_RADIUS,
-    borderTopRightRadius: MODAL_BORDER_RADIUS,
-    backgroundColor: "#e0e0e0",
-    // Small divider between header and inputs
-    borderBottomColor: "#cccccc",
-    borderBottomWidth: 1,
-  },
-  // "New Post" title
-  newPostTitle: {
-    fontSize: 16,
-    textAlign: "center",
-    fontWeight: "bold",
-  },
-  // Input fields
-  modalInput: {
-    fontSize: 16,
-    width: "100%",
-    padding: GENERAL_PADDING,
-    // Small divider between inputs
-    borderColor: "#cccccc",
-    borderBottomWidth: 1,
-  },
-  modalContentsInput: {
-    height: 200,
-  },
-  // Semi-transparent background for the modal
-  modalBackground: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    padding: 15,
   },
 });
 

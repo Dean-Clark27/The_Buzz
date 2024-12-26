@@ -6,5 +6,8 @@ export type dataRow = {
   id: number;
   title: string;
   contents: string;
+  upvotes: number;
+  downvotes: number;
   is_liked: boolean;
+  is_disliked: boolean;
 };

@@ -2,6 +2,7 @@
 
 ## Installing and Running:
 - Make sure [Node.js (LTS)](https://nodejs.org/en/) is installed
+- Run `npm install @react-navigation/native @react-navigation/stack` to run the navigation stack
 	- Try the following to very (you may need to add Node.js to your **path**):
 		- `node -v`
 		- `npm -v`
@@ -77,3 +78,18 @@ src/
 - `npx expo start` - Start the app
 - `npm test` - Run tests (I would reccommend using the "Jest" extension in VSCode)
 - `npx typedoc` - Generate documentation
+
+## Unit Test Descriptions:
+- App should fetch posts and set the local data
+- App should log an error if fetch fails
+- On pressing like, the like count should increase
+- On pressing like, the like count should decrease
+- On pressing dislike, the dislike count should increase
+- On pressing dislike, the dislike count should decrease
+- On adding a post, the post should be added to the list
+- The message page should render each part correctly
+- The add post modal should open and close correctly
+- The add post modal should render each part correctly
+- The add post modal should disable submit button correctly
+- The list item should render each part correctly
+- The list item should toggle the like button correctly

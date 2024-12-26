@@ -1,5 +1,5 @@
 import { BACKEND_URL, dataRow } from "../constants";
-import { fetchData, toggleLike, addPost } from "../apiUtils";
+import { fetchData, toggleVote, addPost } from "../apiUtils";
 
 let setData: jest.Mock;
 let mockData: dataRow[];
