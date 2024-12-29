@@ -1,18 +1,18 @@
-# CSE 216 Team Repo - Backend
+# The Buzz (Former CSE 216 Team Repo) 
 ## Details
 * Semester: Fall 2024
 * Team Number: 32
 * Team Name: jailbreak
-* Bitbucket Repository: 
-    * On The Web:https://bitbucket.org/sml3/cse216_fa24_team_32
-    * Git Clone: 'git clone git@bitbucket.org:sml3/cse216_fa24_team_32.git'
+* Repository:
+    * On The Web:https://github.com/Dean-Clark27/The_Buzz (former https://bitbucket.org/sml3/cse216_fa24_team_32)
+    * Git Clone: 'git clone https://github.com/Dean-Clark27/The_Buzz.git'
 * Jira:
     * https://lehigh-team-drfppe9i.atlassian.net/jira/software/projects/TC/boards/2
 * Backend URL:
     * https://team-jailbreak.dokku.cse.lehigh.edu
 * API Routes:
-![API Routes](docs/APIRoutes_phase2_1.png)
-![API Routes](docs/APIRoutes_phase2_2.png)
+![API Routes](docs/)
+![API Routes](docs/)
 * Supabase Database:
     * DATABASE_URI = 
     jdbc:postgresql://aws-0-us-east-1.pooler.supabase.com:5432/postgres?user=postgres.setpdkyicbyderfipqpy&password=[YOUR-PASSWORD]
